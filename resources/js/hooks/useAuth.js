@@ -47,6 +47,16 @@ export function useAuth() {
         return u;
     }, [cargarMenus]);
 
+    // Registrar nuevo usuario vía Fortify y establecer sesión
+    const registrar = useCallback(async (form) => {
+        await axios.post('/register', form);
+        const { data } = await axios.get('/api/me');
+        const u = normalizarUsuario(data);
+        setUsuario(u);
+        await cargarMenus();
+        return u;
+    }, [cargarMenus]);
+
     // Cerrar sesión — se limpia el estado ANTES del await para que el
     // guardián de rutas ya vea usuario=null cuando se llame navigate()
     const logout = useCallback(async () => {
@@ -66,5 +76,5 @@ export function useAuth() {
         return usuario.permisos.includes(permiso);
     }, [usuario]);
 
-    return { usuario, verificando, verificarSesion, login, logout, tienePermiso, menus };
+    return { usuario, verificando, verificarSesion, login, registrar, logout, tienePermiso, menus };
 }

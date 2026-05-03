@@ -1,12 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
 
 const mapa = {
-    dashboard: 'Dashboard',
-    usuarios: 'Usuarios',
-    roles: 'Roles',
-    permisos: 'Permisos',
-    menus: 'Menús',
-    submenus: 'Submenús',
+    dashboard:     'Dashboard',
+    perfil:        'Mi perfil',
+    usuarios:      'Usuarios',
+    roles:         'Roles',
+    permisos:      'Permisos',
+    menus:         'Menús',
+    submenus:      'Submenús',
+    configuracion: 'Configuración',
 };
 
 export default function Breadcrumb() {

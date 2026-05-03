@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SubmenuController;
 use App\Http\Controllers\UsuarioController;
@@ -17,6 +18,12 @@ Route::middleware('auth')->prefix('api')->group(function () {
     // Sesión del usuario autenticado
     Route::get('/me',    [ConfiguracionController::class, 'perfil']);
     Route::get('/menus', [ConfiguracionController::class, 'menusSidebar']);
+
+    // Perfil del usuario autenticado
+    Route::get('/perfil',          [PerfilController::class, 'show']);
+    Route::put('/perfil',          [PerfilController::class, 'update']);
+    Route::put('/perfil/password', [PerfilController::class, 'updatePassword']);
+    Route::delete('/perfil',       [PerfilController::class, 'destroy']);
 
     // ── Módulo Configuración ──────────────────────────────────────────────────
     Route::prefix('configuracion')->group(function () {

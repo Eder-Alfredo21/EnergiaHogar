@@ -9,7 +9,7 @@ import { useAuth } from './hooks/useAuth';
 
 function App() {
     const [isDark, setIsDark] = useDarkMode();
-    const { usuario, verificando, verificarSesion, login, logout, tienePermiso, menus } = useAuth();
+    const { usuario, verificando, verificarSesion, login, registrar, logout, tienePermiso, menus } = useAuth();
 
     // Verificar sesión activa al montar (útil tras F5)
     useEffect(() => {
@@ -34,6 +34,8 @@ function App() {
                 setIsDark={setIsDark}
                 usuario={usuario}
                 login={login}
+                registrar={registrar}
+                verificarSesion={verificarSesion}
                 logout={logout}
                 tienePermiso={tienePermiso}
                 menus={menus}

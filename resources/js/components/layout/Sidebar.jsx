@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from '../ui/Logo';
 
 export default function Sidebar({ mobileAbierto, setMobileAbierto, usuario, menus }) {
     const location = useLocation();
@@ -38,15 +39,7 @@ export default function Sidebar({ mobileAbierto, setMobileAbierto, usuario, menu
         <div className="flex flex-col h-full">
             {/* Logo */}
             <div className="flex items-center h-16 px-5 border-b border-zinc-200 dark:border-white/5 shrink-0">
-                <div className="flex items-center gap-3">
-                    <div className="size-8 rounded-lg bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/50">
-                        <i className="fa-solid fa-bolt text-white text-xs" />
-                    </div>
-                    <div>
-                        <p className="text-zinc-900 dark:text-white font-bold text-sm leading-none">EnergíaHogar</p>
-                        <p className="text-zinc-400 dark:text-zinc-500 text-[10px] mt-0.5">Panel Admin</p>
-                    </div>
-                </div>
+                <Logo variante="horizontal" tamano="md" className="max-w-[170px]" />
             </div>
 
             {/* Nav */}

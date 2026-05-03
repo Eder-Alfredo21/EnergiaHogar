@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Spatie\Permission\Models\Role;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -29,11 +30,22 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $rol = Role::where('name', '!=', 'superadmin')->orderByDesc('id')->first();
+        if (!$rol) {
+            throw ValidationException::withMessages([
+                'name' => ['No hay roles disponibles. Contacta al administrador.'],
+            ]);
+        }
+
+        $usuario = User::create([
             'name'     => $input['name'],
             'username' => $input['username'],
             'email'    => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $usuario->assignRole($rol);
+
+        return $usuario;
     }
 }

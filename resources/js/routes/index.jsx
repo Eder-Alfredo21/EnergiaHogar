@@ -8,7 +8,9 @@ const Menus          = lazy(() => import('../pages/Menus'));
 const Submenus       = lazy(() => import('../pages/Submenus'));
 const Roles          = lazy(() => import('../pages/Roles'));
 const Usuarios       = lazy(() => import('../pages/Usuarios'));
+const Perfil         = lazy(() => import('../pages/Perfil'));
 const Login          = lazy(() => import('../pages/Login'));
+const Register       = lazy(() => import('../pages/Register'));
 const ForgotPassword = lazy(() => import('../pages/ForgotPassword'));
 const ResetPassword  = lazy(() => import('../pages/ResetPassword'));
 
@@ -23,7 +25,7 @@ function PageLoader() {
     );
 }
 
-export default function AppRoutes({ isDark, setIsDark, usuario, login, logout, tienePermiso, menus }) {
+export default function AppRoutes({ isDark, setIsDark, usuario, login, registrar, verificarSesion, logout, tienePermiso, menus }) {
     const autenticado = !!usuario;
 
     return (
@@ -34,6 +36,10 @@ export default function AppRoutes({ isDark, setIsDark, usuario, login, logout, t
                     <Route
                         path="/login"
                         element={autenticado ? <Navigate to="/dashboard" replace /> : <Login login={login} />}
+                    />
+                    <Route
+                        path="/register"
+                        element={autenticado ? <Navigate to="/dashboard" replace /> : <Register registrar={registrar} />}
                     />
                     <Route
                         path="/forgot-password"
@@ -61,6 +67,7 @@ export default function AppRoutes({ isDark, setIsDark, usuario, login, logout, t
                     }
                 >
                     <Route path="/dashboard"                              element={<Dashboard usuario={usuario} />} />
+                    <Route path="/perfil"                                 element={<Perfil usuario={usuario} verificarSesion={verificarSesion} logout={logout} />} />
                     <Route path="/configuracion/menus"                    element={<Menus />} />
                     <Route path="/configuracion/menus/:menuId/submenus"  element={<Submenus />} />
                     <Route path="/configuracion/submenus"                 element={<Submenus />} />

@@ -11,8 +11,7 @@ export default function Topbar({ isDark, setIsDark, usuario, logout, setMobileAb
     };
 
     const itemsUsuario = [
-        { label: 'Mi perfil', icono: 'fa-user' },
-        { label: 'Configuración', icono: 'fa-gear' },
+        { label: 'Mi perfil', icono: 'fa-user', onClick: () => navigate('/perfil') },
         { separador: true },
         { label: 'Cerrar sesión', icono: 'fa-arrow-right-from-bracket', peligro: true, onClick: handleLogout },
     ];
